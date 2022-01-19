@@ -5,13 +5,13 @@ using UnityEngine;
 public class WrapScreen : TeleportOnScreen 
 {
 	
-		public override void Update() 
+	public override void Update() 
         {
-			base.Update();
+		base.Update();
 
-			if( _isOffScreen ) 
-			{
-				transform.position = Camera.main.ViewportToWorldPoint( _viewportPos );
-			}
+		if( _isOffScreen ) 
+		{
+			transform.position = Camera.main.ViewportToWorldPoint( _viewportPos );
 		}
+	}
 }
