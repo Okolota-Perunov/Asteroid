@@ -4,39 +4,41 @@ using UnityEngine;
 
 public class PlayerMov : MonoBehaviour
 {
-		[SerializeField] private float _acceleration = 5.0f;
+	[SerializeField] private float _acceleration = 5.0f;
 
-		[SerializeField] private float _maxSpeed = 5.0f;
+	[SerializeField] private float _maxSpeed = 5.0f;
 
-		[SerializeField] private float _rotationSpeed = 100.0f;
-		
-
+	[SerializeField] private float _rotationSpeed = 100.0f;
 
         private float _friction = 1f;
-		private Vector3 _transformSpeed;
+	
+	private Vector3 _transformSpeed;
 
 
-		void Awake() 
+	void Awake() 
         {
-			Reset();
-		}
+		Reset();
+	}
 		
-		void Update() 
+	void Update() 
         {
-			float inputX = Input.GetAxis( "Horizontal" );
-			float inputY = Mathf.Clamp( Input.GetAxis( "Vertical" ), 0, 1 );
+		float inputX = Input.GetAxis( "Horizontal" );
+		
+		float inputY = Mathf.Clamp( Input.GetAxis( "Vertical" ), 0, 1 );
 
-			transform.Rotate( new Vector3 ( 0, 0, -inputX ), _rotationSpeed * Time.deltaTime );
+		transform.Rotate( new Vector3 ( 0, 0, -inputX ), _rotationSpeed * Time.deltaTime );
 
-			_transformSpeed += ( inputY * ( transform.up * _acceleration ) ) * Time.deltaTime;
-			_transformSpeed *= _friction;
+		_transformSpeed += ( inputY * ( transform.up * _acceleration ) ) * Time.deltaTime;
+		
+		_transformSpeed *= _friction;
 
-			_transformSpeed = Vector3.ClampMagnitude( _transformSpeed, _maxSpeed );
-			transform.Translate( _transformSpeed * Time.deltaTime, Space.World );
-		}
+		_transformSpeed = Vector3.ClampMagnitude( _transformSpeed, _maxSpeed );
+		
+		transform.Translate( _transformSpeed * Time.deltaTime, Space.World );
+	}
 
-		public void Reset() 
+	public void Reset() 
         {
-			_transformSpeed = new Vector3( 0, 0, 0 );
-		}
+		_transformSpeed = new Vector3( 0, 0, 0 );
+	}
 }
