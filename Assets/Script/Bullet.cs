@@ -9,13 +9,15 @@ public class Bullet : MonoBehaviour
 
     private Vector3 _transformSpeed;
 
-   void Update()
+    void Update()
         {
-			_transformSpeed += ( _bulletAccelerarion * ( transform.up * _bulletAccelerarion ) ) * Time.deltaTime;
+		_transformSpeed += ( _bulletAccelerarion * ( transform.up * _bulletAccelerarion ) ) * Time.deltaTime;
 
-			transform.Translate( _transformSpeed * Time.deltaTime, Space.World );
-            _lifeTimeCount -= Time.deltaTime;
-            if(_lifeTimeCount <= 0)
+		transform.Translate( _transformSpeed * Time.deltaTime, Space.World );
+		
+		_lifeTimeCount -= Time.deltaTime;
+		
+         	if(_lifeTimeCount <= 0)
                 {
                     Destroy(this.gameObject);
                 }
